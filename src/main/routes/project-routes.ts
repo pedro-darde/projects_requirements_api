@@ -9,5 +9,5 @@ const makeAddProject = (): Controller => {
 };
 
 export default (route: Router) => {
-  route.post("project", adaptRoute(makeAddProject()));
+  route.post("/project", adaptRoute(makeAddProject()));
 };
