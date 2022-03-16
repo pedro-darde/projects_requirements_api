@@ -4,18 +4,15 @@ import { Controller } from "../../protocols/Controller";
 import { HttpRequest, HttpResponse } from "../../protocols/http";
 import { ProjectPostgresRepository } from "../../repositories/ProjectPostgresRepository";
 
-export class AddProjectController implements Controller {
+export class ListProjectController implements Controller {
   async handle(httpRequest: HttpRequest): Promise<HttpResponse> {
-    const { project, requirements } = httpRequest.body;
-    const repo = AddProjectController.makeRepository();
-    
-    const parsedProject = repo.create(project)
-    const projectInserted = await repo.add(parsedProject);
+    const repo = ListProjectController.makeRepo();
+    const projects = await repo.list();
 
-    return ok(projectInserted);
+    return ok(projects);
   }
 
-  static makeRepository() {
+  static makeRepo() {
     return getCustomRepository(ProjectPostgresRepository);
   }
 }

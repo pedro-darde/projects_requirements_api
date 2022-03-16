@@ -1,4 +1,11 @@
-import { Column, Entity, PrimaryGeneratedColumn, Repository } from "typeorm";
+import {
+  Column,
+  Entity,
+  OneToMany,
+  PrimaryGeneratedColumn,
+  Repository,
+} from "typeorm";
+import { ProjectRequirement } from "./ProjectRequirement";
 
 @Entity("projects")
 export class Project {
@@ -16,4 +23,7 @@ export class Project {
 
   @Column({ default: true })
   active: boolean;
+
+  @OneToMany(() => ProjectRequirement, projectRequirement => projectRequirement.project)
+  projectRequirements: ProjectRequirement[];
 }
