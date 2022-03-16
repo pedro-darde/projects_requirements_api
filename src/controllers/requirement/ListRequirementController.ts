@@ -4,14 +4,11 @@ import { Controller } from "../../protocols/Controller";
 import { HttpRequest, HttpResponse } from "../../protocols/http";
 import { RequirementPostgresRepository } from "../../repositories/RequirementPostgresRepository";
 
-export class AddRequirementController implements Controller {
+export class ListRequirementController implements Controller {
   async handle(httpRequest: HttpRequest): Promise<HttpResponse> {
-    const { requirement } = httpRequest.body;
     const repo = this.makeRepository();
-    const requirementParsed = repo.create(requirement);
-    const requirementInserted = await repo.add(requirementParsed);
-
-    return ok(requirementInserted);
+    const requirements = repo.list();
+    return ok(requirements);
   }
 
   private makeRepository() {

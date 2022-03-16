@@ -2,7 +2,7 @@ import { EntityNotFoundError } from "typeorm";
 import { ServerError } from "../errors/ServerError";
 import { HttpResponse } from "../protocols/http";
 
-export const badRequest = (error: string[]): HttpResponse => ({
+export const  badRequest = (error: string[]): HttpResponse => ({
   statusCode: 400,
   body: error,
 });
@@ -12,7 +12,7 @@ export const ok = (data: any): HttpResponse => ({
   body: { message: "Informações inseridas com sucesso", data },
 });
 
-export const serverError = (e: Error): HttpResponse => ({
+export const serverError = (e: any): HttpResponse => ({
   statusCode: 500,
   body: [new ServerError(e.stack!)],
 });

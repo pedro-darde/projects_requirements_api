@@ -10,7 +10,7 @@ import { Requirement } from "./Requirement";
 @Entity("project_requirements")
 export class ProjectRequirement {
   @PrimaryGeneratedColumn("increment")
-  id: number;
+  id?: number;
 
   @ManyToOne(() => Project)
   @JoinColumn({ name: "project_id" })

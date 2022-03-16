@@ -11,6 +11,10 @@ export class ProjectPostgresRepository extends AbstractRepository<Project> {
     return this.repository.save(project);
   }
 
+  async findOne(project_id: number): Promise<Project> {
+    return await this.repository.findOneOrFail(project_id, { relations: ['projectRequirements']});
+  }
+
   async list(): Promise<Project[]> {
     return this.repository.find({
       order: { id: "DESC" },
