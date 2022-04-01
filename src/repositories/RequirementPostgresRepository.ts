@@ -11,7 +11,16 @@ export class RequirementPostgresRepository extends AbstractRepository<Requiremen
     return await this.repository.save(requirement);
   }
 
+  async show(requirement_id: number) {
+    return await this.repository.findOneOrFail(requirement_id, { relations: ['pictures'] })
+  }
+
+  async edit(requirement: Requirement, id: number) {
+    await this.repository.update(id, requirement)
+    return this.repository.findOneOrFail(id)
+  }
+
   async list() {
-    return await this.repository.find();
+    return await this.repository.find({ relations: ['pictures'], order: { id: 'DESC' } });
   }
 }

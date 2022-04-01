@@ -7,7 +7,7 @@ import { RequirementPostgresRepository } from "../../repositories/RequirementPos
 export class ListRequirementController implements Controller {
   async handle(httpRequest: HttpRequest): Promise<HttpResponse> {
     const repo = this.makeRepository();
-    const requirements = repo.list();
+    const requirements = await repo.list();
     return ok(requirements);
   }
 

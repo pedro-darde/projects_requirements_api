@@ -12,11 +12,11 @@ export class ProjectRequirement {
   @PrimaryGeneratedColumn("increment")
   id?: number;
 
-  @ManyToOne(() => Project)
+  @ManyToOne(() => Project, project => project.projectRequirements, { eager: true })
   @JoinColumn({ name: "project_id" })
   project: Project;
 
-  @ManyToOne(() => Requirement)
+  @ManyToOne(() => Requirement, requirement => requirement.projectsRequirements, { eager: true })
   @JoinColumn({ name: "requirement_id" })
   requirement: Requirement;
 }

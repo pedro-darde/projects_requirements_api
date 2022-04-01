@@ -4,14 +4,8 @@ import setupMiddlaweres from "./middlewares";
 import setupRoutes from "./routes";
 const app = express();
 
-app.get("/", (req, res) => {
-    res.end("<h1> Project requirement API </h1>")
-})
-
-app.get("/api", (req, res) => {
-    res.end("<h1> Project requirement API </h1>")
-})
-
 setupMiddlaweres(app);
 setupRoutes(app);
+
+app.use("/uploads/requirements", express.static(path.join(__dirname, "..", '..', "uploads/requirements")));
 export default app;

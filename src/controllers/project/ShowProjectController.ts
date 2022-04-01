@@ -9,7 +9,7 @@ export class ShowProjectController implements Controller {
     try {
       const { id } = httpRequest.params;
       const repo = this.makeRepository();
-      const project = repo.findOne(id);
+      const project = await repo.findOne(id);
       return ok(project);
     } catch (e) {
       return serverError(e);
