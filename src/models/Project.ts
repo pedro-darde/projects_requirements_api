@@ -24,6 +24,9 @@ export class Project {
   @Column({ default: true })
   active: boolean;
 
+  @Column()
+  documentation_link: string
+
   @OneToMany(() => ProjectRequirement, projectRequirement => projectRequirement.project)
   projectRequirements: ProjectRequirement[];
 }
